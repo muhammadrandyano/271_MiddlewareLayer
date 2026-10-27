@@ -70,5 +70,18 @@ function validateBody(schema) {
             abortEarly: false,
             allowUnknown: true
         })
+        if (error) {
+            return errorResponse(
+                res,
+                "Validation Error",
+                400,
+                error.details.map(item => ({
+                    field: item.path.join('.'),
+                    message: item.message
+                }))
+            )
+        }
+        req.body = value
+        next()
     }
 }
