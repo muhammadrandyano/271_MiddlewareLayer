@@ -186,3 +186,11 @@ app.delete(
             result.rows[0])
     }
 )
+
+//Route Tidak Di temukan
+app.use((req, res) => {
+    return errorResponse(
+        res,
+        "Route not found",
+        404)
+})
