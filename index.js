@@ -194,3 +194,13 @@ app.use((req, res) => {
         "Route not found",
         404)
 })
+
+//Error Handling
+app.use((err, req, res, next) => {
+    console.error(err.stack)
+    return errorResponse(
+        res,
+        "Internal Server Error",
+        500
+    )
+})
